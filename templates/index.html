@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>House Price Prediction</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🏠 House Price Prediction</h1>
+    <div class="stats">
+
+    <div class="card">
+        <h3>{{ accuracy }}%</h3>
+        <p>Model Accuracy</p>
+    </div>
+
+    <div class="card">
+        <h3>{{ total_houses }}</h3>
+        <p>Properties</p>
+    </div>
+
+    <div class="card">
+        <h3>Random Forest</h3>
+        <p>Algorithm</p>
+    </div>
+
+</div>
+
+    <form action="/predict" method="post">
+
+        <div class="input-box">
+            <div class="input-box">
+
+<select name="location" required>
+
+<option value="">Select Location</option>
+
+<option value="Whitefield">Whitefield</option>
+
+<option value="Electronic City">Electronic City</option>
+
+<option value="Marathahalli">Marathahalli</option>
+
+<option value="Rajaji Nagar">Rajaji Nagar</option>
+
+<option value="Indira Nagar">Indira Nagar</option>
+
+<option value="Hebbal">Hebbal</option>
+
+<option value="HSR Layout">HSR Layout</option>
+
+<option value="JP Nagar">JP Nagar</option>
+
+</select>
+
+</div>
+        </div>
+
+        <div class="input-box">
+            <input type="number"
+            name="size"
+            placeholder="BHK Size"
+            required>
+        </div>
+
+        <div class="input-box">
+            <input type="number"
+            name="total_sqft"
+            placeholder="Total Sqft"
+            required>
+        </div>
+
+        <div class="input-box">
+            <input type="number"
+            name="bath"
+            placeholder="Bathrooms"
+            required>
+        </div>
+
+        <div class="input-box">
+            <input type="number"
+            name="balcony"
+            placeholder="Balconies"
+            required>
+        </div>
+
+        <button type="submit">
+            Predict Price
+        </button>
+
+    </form>
+    <div class="chart-container">
+
+    <canvas id="priceChart"></canvas>
+
+</div>
+
+<div class="chart-container">
+
+    <canvas id="areaChart"></canvas>
+
+</div>
+
+    <div class="result">
+        {% if prediction_text %}
+
+<a href="/download_pdf">
+
+<button type="button">
+
+Download PDF Report
+
+</button>
+
+</a>
+
+{% endif %}
+        {{ prediction_text }}
+    </div>
+
+</div><script>
+
+const priceChart = document.getElementById('priceChart');
+
+new Chart(priceChart, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: ['1 BHK', '2 BHK', '3 BHK', '4 BHK'],
+
+        datasets: [{
+
+            label: 'Average Price (Lakhs)',
+
+            data: [40, 65, 90, 150],
+
+            borderWidth: 1
+
+        }]
+    },
+
+    options: {
+
+        responsive: true
+
+    }
+});
+
+
+
+const areaChart = document.getElementById('areaChart');
+
+new Chart(areaChart, {
+
+    type: 'line',
+
+    data: {
+
+        labels: ['500', '1000', '1500', '2000', '2500'],
+
+        datasets: [{
+
+            label: 'Price vs Area',
+
+            data: [30, 55, 80, 120, 170],
+
+            borderWidth: 2
+
+        }]
+    },
+
+    options: {
+
+        responsive: true
+
+    }
+});
+
+</script>
+
+</body>
+
+</html>
+
+
+</body>
+
+</html>
