@@ -1,3 +1,4 @@
+
 # AI House Price Prediction
 
 A Machine Learning web application that predicts Bangalore house prices using Random Forest Regression.
@@ -23,3 +24,7 @@ A Machine Learning web application that predicts Bangalore house prices using Ra
 pip install -r requirements.txt
 
 python app.py
+
+# house-price-prediction
+I have created a house price prediction model in which i have integrated [ML+FLASK(backend)+HTML(frontend)+CSS(styling)
+
